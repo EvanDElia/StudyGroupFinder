@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<h1> New User Sign Up </h1>
+<p id="stuff"> Email: <input id="mail" type="text"> <br>
+Username: <input id="user" type="text">
+Password: <input id="pass" type="password">
+
+<button onclick="myFunction()">Submit</button>
+
+<p id="error"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("pass").value;
+	var error=""
+	if(x.length<5)
+		 error+="<br> Error.  Password must be at least 5 characters long.";
+	//check all usernames and see if username already taken
+	if(document.getElementById("mail").value.length<1)
+		error+="<br> Error.  Invalid Email address."
+	if(error.length>1)
+		document.getElementById("error").innerHTML = error;
+	else
+		document.getElementById("error").innerHTML = "Account successfully created."
+		//and do other stuff
+	console.log(x.length)
+}
+</script>
+
+</body>
+</html> 
