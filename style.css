@@ -1,0 +1,37 @@
+body{
+	background-color: #4CA84D;
+}
+
+#title{
+	margin: 0px;
+	display: inline;
+}
+#create{
+	float: right;
+}
+th, td{
+	border: 1px solid black;
+}
+table{
+	border: 4px dotted red;
+	width: 100%;
+}
+#form{
+	display: none;
+}
+a{
+	text-decoration: none;
+	color:black;
+}
+a:visited{
+	text-decoration: none;
+	color:black;
+}
+#header{
+	height: 20px;
+	background-color: #9FE84D;
+}
+#header a{
+	margin-left: 15%;
+	font-family: Helvetica;
+}
