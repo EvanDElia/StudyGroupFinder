@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body onload="myFunction()">
+<script>
+function myFunction(){
+	function group(name, subj, numb, prof, size, open){
+		this.name=name;
+		this.subj=subj;
+		this.numb=numb
+		this.prof=prof;
+		this.size=size;
+		this.open=open;
+	}
+	var grp1=new group("hi","MTH",314,"Power","0/314",true);
+	var grp2=new group("math is cool","MTH",628,"Power","2/2",false);
+	var grp3=new group("engineering ftw","EEN",123,"Sarker","3/5",true);
+	var userGroups=[];
+	userGroups.push(grp1);
+	userGroups.push(grp2);
+	userGroups.push(grp3);
+
+	var user={name:"John Smith", groups:userGroups}
+	document.getElementById("name").innerHTML = user.name;
+	var table = document.getElementById("myTable");
+	for(i=0; i<user.groups.length; i++){
+		var row = table.insertRow(i+1);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		var cell3 = row.insertCell(2);
+		var cell4 = row.insertCell(3);
+		var cell5 = row.insertCell(4);
+		var cell6 = row.insertCell(5);
+		cell1.innerHTML = user.groups[i].name;
+		cell2.innerHTML = user.groups[i].subj;
+		cell3.innerHTML = user.groups[i].numb;
+		cell4.innerHTML = user.groups[i].prof;
+		cell5.innerHTML = user.groups[i].size;
+		cell6.innerHTML = user.groups[i].open;
+	}
+	console.log(user.groups.length)
+}
+</script>
+<div id="header"><a href="search.html">search</a>
+<a href="signup.html">signup/signin</a> 
+<a href="User.html">User</a></div>
+<h1 id="name">Potato</h1>
+<p>
+	<table border="1" style="width:100%" id="myTable">
+	  <tr>
+		<th>Group Name</th>
+		<th>Subject</th>	
+		<th>Class</th>
+		<th>Professor</th>
+		<th>Size(current/possible)</th>
+		<th>Open?</th>
+	  </tr>
+	</table>
+	<br>
+	<a href="search.html">Search for groups</a> <br />
+	<a href="index.php">Or See all the available classes</a>
+</p>
+</html>
+</body>
