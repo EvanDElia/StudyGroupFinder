@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<body onload="addOption()">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
+
+<script>
+//adds option from the array depts to the dropdown bar
+function addOption() {
+    var x = document.getElementById("dept");
+	var depts = ["","MTH","PHY","CSC","EEN"]
+    for(i=0; i<depts.length; i++)
+	{
+		x.options[x.options.length] = new Option(depts[i], i)
+	}
+}
+</script>
+
+<div id="header"><a href="search.html">search</a>
+<a href="signup.html">signup/signin</a> 
+<a href="User.html">User</a></div>
+
+<p>Put in criteria you wish to search for: <br>
+<form id="frm1" >Department: <select id="dept">
+
+</select>  
+Class Number:<input id="numb" type="text" size=1> 
+Professor Name:<input id="prof" type="text"><br>
+<input type="button" onclick="myFunction()" value="Submit">
+</form>
+
+<script>
+function myFunction() {
+    var prof=document.getElementById("prof").value;
+
+	//get array of groups in this format, set as data array
+	function group(name, subj, numb, prof, size, open){
+		this.name=name;
+		this.subj=subj;
+		this.numb=numb
+		this.prof=prof;
+		this.size=size;
+		this.open=open;
+	}
+	//different data search through such as professor and department
+	var criteria = [];
+	criteria.push(document.getElementById("dept").value);
+	criteria.push(document.getElementById("numb").value);
+	criteria.push(document.getElementById("prof").value);
+	
+	var data = [];
+	var grp1=new group("hi","MTH",314,"Power","0/314",true);
+	var grp2=new group("math is cool","MTH",628,"Power","2/2",false);
+	var grp3=new group("engineering ftw","EEN",123,"Sarker","3/5",true);
+	data.push(grp1);
+	data.push(grp2);
+	data.push(grp3);
+	var add =[];
+	//check valid groups from data and adds them to the to add array 'add'
+	for(i=0;i<data.length;i++)
+	{
+		if((criteria[0]==0 || $("#dept option:selected").text()==data[i].subj)&&(criteria[1]=="" || criteria[1]==data[i].numb)&&(criteria[2]=="" || criteria[2]==data[i].prof))
+			add.push(data[i])
+		console.log($("#dept option:selected").text())
+	}
+	//refreshes table rows for new search
+	var count = $('#myTable tr').length;
+	for(i=1; i<count; i++)
+		document.getElementById("myTable").deleteRow(1);
+	//adds 'add' to the table
+	var table = document.getElementById("myTable");
+	for(i=0; i<add.length; i++){
+		var row = table.insertRow(i+1);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		var cell3 = row.insertCell(2);
+		var cell4 = row.insertCell(3);
+		var cell5 = row.insertCell(4);
+		var cell6 = row.insertCell(5);
+		cell1.innerHTML = add[i].name;
+		cell2.innerHTML = add[i].subj;
+		cell3.innerHTML = add[i].numb;
+		cell4.innerHTML = add[i].prof;
+		cell5.innerHTML = add[i].size;
+		cell6.innerHTML = add[i].open;
+	}
+
+}
+</script></p>
+
+<p id="info">
+
+<table border="1" style="width:100%" id="myTable">
+  <tr>
+    <th>Group Name</th>
+    <th>Subject</th>	
+	<th>Class</th>
+    <th>Professor</th>
+	<th>Size(current/possible)</th>
+	<th>Open?</th>
+  </tr>
+</table>
+<br>
+<a href="User.html">User Page</a><br />
+<a href="index.php">Or See all the available classes</a>
+</p>
+
+
+</body>
+</html>
